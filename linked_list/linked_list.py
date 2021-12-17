@@ -34,3 +34,18 @@ class LinkedList:
         else:
             self.tail.next = new_node
         self.length += 1
+
+    def pop(self):
+        node = self.head
+        while node:
+            if node.next is None:
+                self.head = None
+                self.tail = None
+                self.length = 0
+                break
+            elif node.next.next is None:
+                node.next = None
+                self.tail = node.next
+                self.length -= 1
+                break
+            node = node.next
