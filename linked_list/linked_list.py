@@ -59,3 +59,9 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         self.length += 1
+
+    def pop_first(self):
+        node = self.head
+        if node:
+            self.head = node.next
+            self.length -= 1
