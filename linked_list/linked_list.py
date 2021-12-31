@@ -70,4 +70,8 @@ class LinkedList:
         temp = self.head
         for _ in range(idx):
             temp = temp.next
-        return temp.value
+        return temp
+
+    def set_value(self, idx, value):
+        temp = self.get(idx)
+        temp.value = value

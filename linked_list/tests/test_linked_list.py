@@ -85,4 +85,11 @@ def test_pop_first():
 def test_get_index():
     """Should return value by index"""
     linked_list = LinkedList(1)
-    assert linked_list.get(0) == 1
+    assert linked_list.get(0).value == 1
+
+
+def test_set_value():
+    """Should set new value by index"""
+    linked_list = LinkedList(1)
+    linked_list.set_value(0, 2)
+    assert linked_list.head.value == 2
