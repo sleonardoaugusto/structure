@@ -65,3 +65,9 @@ class LinkedList:
         if node:
             self.head = node.next
             self.length -= 1
+
+    def get(self, idx):
+        temp = self.head
+        for _ in range(idx):
+            temp = temp.next
+        return temp.value

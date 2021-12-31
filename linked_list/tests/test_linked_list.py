@@ -80,3 +80,9 @@ def test_pop_first():
     assert linked_list.length == 1
     assert linked_list.head.value == 2
     assert linked_list.tail.value == 2
+
+
+def test_get_index():
+    """Should return value by index"""
+    linked_list = LinkedList(1)
+    assert linked_list.get(0) == 1
