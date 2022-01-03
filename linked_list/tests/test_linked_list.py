@@ -23,7 +23,15 @@ def test_append():
     linked_list.append(2)
     assert linked_list.length == 1
     assert linked_list.head.value == 2
-    assert linked_list.tail == 2
+    assert linked_list.tail.value == 2
+
+
+def test_append_without_node():
+    linked_list = LinkedList(1)
+    linked_list.append(2)
+    assert linked_list.length == 2
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 2
 
 
 def test_pop_with_one_node():
@@ -42,7 +50,7 @@ def test_pop_with_two_nodes():
     linked_list.pop()
     assert linked_list.length == 1
     assert linked_list.head.value == 2
-    assert linked_list.tail.value == 3
+    assert linked_list.tail.value == 2
 
 
 def test_prepend_without_length():
@@ -58,7 +66,7 @@ def test_prepend():
     """Should add node if list is not empty"""
     linked_list = LinkedList(2)
     linked_list.prepend(3)
-    assert linked_list.length == 1
+    assert linked_list.length == 2
     assert linked_list.head.value == 3
     assert linked_list.tail.value == 2
 

@@ -30,9 +30,9 @@ class LinkedList:
         new_node = Node(value)
         if self.length == 0:
             self.head = new_node
-            self.tail = new_node
         else:
             self.tail.next = new_node
+        self.tail = new_node
         self.length += 1
 
     def pop(self):
@@ -45,7 +45,7 @@ class LinkedList:
                 break
             elif node.next.next is None:
                 node.next = None
-                self.tail = node.next
+                self.tail = node
                 self.length -= 1
                 break
             node = node.next
