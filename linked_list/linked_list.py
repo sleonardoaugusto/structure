@@ -75,3 +75,23 @@ class LinkedList:
     def set_value(self, idx, value):
         temp = self.get(idx)
         temp.value = value
+
+    def insert(self, idx, value):
+        if idx < 0 or idx > self.length:
+            raise IndexOutOfRange
+        elif idx == 0:
+            self.prepend(value)
+        elif idx == self.length:
+            self.append(value)
+        else:
+            node = Node(value)
+            temp = self.head
+            for _ in range(idx - 1):
+                temp = temp.next
+            node.next = temp.next
+            temp.next = node
+            self.length += 1
+
+
+class IndexOutOfRange(BaseException):
+    ...

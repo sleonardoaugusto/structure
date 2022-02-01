@@ -1,4 +1,6 @@
-from linked_list.linked_list import LinkedList
+import pytest
+
+from linked_list.linked_list import LinkedList, IndexOutOfRange
 
 
 def test_init():
@@ -101,3 +103,35 @@ def test_set_value():
     linked_list = LinkedList(1)
     linked_list.set_value(0, 2)
     assert linked_list.head.value == 2
+
+
+def test_insert_out_of_range():
+    """Should raise an exception if index is out of range"""
+    linked_list = LinkedList(1)
+    with pytest.raises(IndexOutOfRange):
+        linked_list.insert(2, 2)
+
+
+def test_insert_on_the_head():
+    """Should insert item on the top of the list"""
+    linked_list = LinkedList(1)
+    linked_list.insert(0, 2)
+    assert linked_list.get(0).value == 2
+    assert linked_list.head.value == 2
+
+
+def test_insert_on_the_middle():
+    """Should insert item on the middle of the list"""
+    linked_list = LinkedList(1)
+    linked_list.append(2)
+    linked_list.insert(1, 3)
+    assert linked_list.get(1).value == 3
+    assert linked_list.get(1).next.value == 2
+
+
+def test_insert_on_the_end():
+    """Should insert item on the end of the list"""
+    linked_list = LinkedList(1)
+    linked_list.insert(1, 2)
+    assert linked_list.get(1).value == 2
+    assert linked_list.tail.value == 2
