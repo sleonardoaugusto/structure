@@ -61,10 +61,12 @@ class LinkedList:
         self.length += 1
 
     def pop_first(self):
-        node = self.head
-        if node:
-            self.head = node.next
-            self.length -= 1
+        temp = self.head
+        if temp:
+            self.head = temp.next
+        self.length -= 1
+        if self.length == 0:
+            self.tail = None
 
     def get(self, idx):
         temp = self.head
@@ -91,6 +93,20 @@ class LinkedList:
             node.next = temp.next
             temp.next = node
             self.length += 1
+
+    def remove(self, idx):
+        if idx < 0 or idx > self.length - 1:
+            raise IndexOutOfRange
+        elif idx == 0:
+            self.pop_first()
+        elif idx == self.length - 1:
+            self.pop()
+        else:
+            temp = self.head
+            for _ in range(idx - 1):
+                temp = temp.next
+            temp.next = temp.next.next
+            self.length -= 1
 
 
 class IndexOutOfRange(BaseException):

@@ -75,7 +75,7 @@ def test_prepend():
 
 def test_pop_first_without_length():
     """Should remove the only node"""
-    linked_list = LinkedList()
+    linked_list = LinkedList(1)
     linked_list.pop_first()
     assert linked_list.length == 0
     assert linked_list.head is None
@@ -135,3 +135,39 @@ def test_insert_on_the_end():
     linked_list.insert(1, 2)
     assert linked_list.get(1).value == 2
     assert linked_list.tail.value == 2
+
+
+def test_remove_out_of_range():
+    """Should raise an exception if index is out of range"""
+    linked_list = LinkedList(1)
+    with pytest.raises(IndexOutOfRange):
+        linked_list.remove(1)
+
+
+def test_remove_on_the_head():
+    """Should remove item by index on head"""
+    linked_list = LinkedList(1)
+    linked_list.remove(0)
+    assert linked_list.get(0) is None
+    assert linked_list.head is None
+    assert linked_list.tail is None
+
+
+def test_remove_on_the_middle():
+    """Should remove item by index on middle"""
+    linked_list = LinkedList(1)
+    linked_list.append(2)
+    linked_list.append(3)
+    linked_list.remove(1)
+    assert linked_list.get(0).value == 1
+    assert linked_list.get(1).value == 3
+
+
+def test_remove_on_the_end():
+    """Should remove item by index on end"""
+    linked_list = LinkedList(1)
+    linked_list.append(2)
+    linked_list.remove(1)
+    assert linked_list.get(0).value == 1
+    assert linked_list.head.value == 1
+    assert linked_list.tail.value == 1
