@@ -171,3 +171,15 @@ def test_remove_on_the_end():
     assert linked_list.get(0).value == 1
     assert linked_list.head.value == 1
     assert linked_list.tail.value == 1
+
+
+def test_reverse():
+    """Should reverse list"""
+    linked_list = LinkedList(1)
+    linked_list.append(2)
+    linked_list.append(3)
+    linked_list.reverse()
+    assert linked_list.head.value == 3
+    assert linked_list.tail.value == 1
+    assert linked_list.head.next.value == 2
+    assert linked_list.tail.next is None
