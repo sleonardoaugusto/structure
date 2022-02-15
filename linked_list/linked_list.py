@@ -28,63 +28,63 @@ class LinkedList:
         if self.length == 1:
             self.head = None
             self.tail = None
-            self.length = 0
         elif self.length > 1:
             temp = self.head
-            while temp.next.next is not None:
+            while temp.next.next:
                 temp = temp.next
-            temp.next = None
             self.tail = temp
-            self.length -= 1
+            temp.next = None
+        self.length -= 1
 
     def prepend(self, value):
         node = Node(value)
-        if self.length == 0:
-            self.tail = node
-        temp = self.head
+        node.next = self.head
         self.head = node
-        self.head.next = temp
         self.length += 1
 
     def pop_first(self):
         if self.length:
-            temp = self.head.next
-            self.head = temp
+            temp = self.head
+            self.head = temp.next
+            if self.length == 1:
+                self.tail = None
+
             self.length -= 1
 
-    def get(self, index):
-        if self.length > index:
-            temp = self.head
-            for _ in range(index):
-                temp = temp.next
-            return temp
-        else:
+    def get(self, idx):
+        if idx >= self.length or idx < 0:
             raise IndexError
+
+        temp = self.head
+        for _ in range(idx):
+            temp = temp.next
+        return temp
 
     def set_value(self, idx, value):
         temp = self.get(idx)
         temp.value = value
 
     def insert(self, idx, value):
-        if idx < 0:
-            raise IndexError
-        elif idx == 0:
+        if idx == 0:
             self.prepend(value)
         elif idx == self.length:
             self.append(value)
         else:
-            node = Node(value)
             temp = self.head
             for _ in range(idx - 1):
                 temp = temp.next
+            node = Node(value)
             node.next = temp.next
             temp.next = node
             self.length += 1
 
     def remove(self, idx):
-        if idx < 0 or idx + 1 > self.length:
+        if idx < 0 or idx > self.length or not self.length:
             raise IndexError
-        if self.length == 1 or idx == self.length - 1:
+
+        elif idx == 0:
+            self.pop_first()
+        elif idx == self.length - 1:
             self.pop()
         else:
             temp = self.head

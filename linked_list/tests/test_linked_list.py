@@ -54,6 +54,23 @@ def test_prepend():
     assert ll.head.next.value == 2
 
 
+def test_pop_first_with_one_item():
+    ll = LinkedList(1)
+    ll.pop_first()
+    assert ll.head is None
+    assert ll.tail is None
+    assert ll.length == 0
+
+
+def test_pop_first_with_two_items():
+    ll = LinkedList(1)
+    ll.append(2)
+    ll.pop_first()
+    assert ll.head.value == 2
+    assert ll.tail.value == 2
+    assert ll.length == 1
+
+
 def test_get():
     ll = LinkedList(1)
     node = ll.get(0)
