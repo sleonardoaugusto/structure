@@ -28,3 +28,15 @@ class DoublyLinkedList:
             self.tail.next = node
             self.tail = node
             self.length += 1
+
+    def pop(self):
+        if self.length == 0:
+            raise IndexError
+        elif self.length == 1:
+            self.head = None
+            self.tail = None
+            self.length = 0
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            self.length -= 1

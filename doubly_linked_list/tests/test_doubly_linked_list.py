@@ -1,3 +1,5 @@
+import pytest
+
 from doubly_linked_list.doubly_linked_list import DoublyLinkedList
 
 
@@ -33,3 +35,27 @@ def test_append():
     assert dll.head.next.value == 2
     assert dll.tail.value == 2
     assert dll.tail.prev.value == 1
+
+
+def test_pop_empty_list():
+    dll = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        dll.pop()
+
+
+def test_pop_length_1():
+    dll = DoublyLinkedList(1)
+    dll.pop()
+    assert dll.head is None
+    assert dll.tail is None
+    assert dll.length == 0
+
+
+def test_pop_length_2():
+    dll = DoublyLinkedList(1)
+    dll.append(2)
+    dll.pop()
+    assert dll.head.value == 1
+    assert dll.head.next is None
+    assert dll.tail.value == 1
+    assert dll.length == 1
