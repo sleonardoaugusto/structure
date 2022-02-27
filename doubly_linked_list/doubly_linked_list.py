@@ -89,3 +89,17 @@ class DoublyLinkedList:
             before.next = node
             after.prev = node
             self.length += 1
+
+    def remove(self, idx):
+        if self.length == 0 or idx > self.length or idx < 0:
+            raise IndexError
+        elif idx == self.length - 1:
+            self.pop()
+        else:
+            before = self.head
+            for _ in range(idx - 1):
+                before = before.next
+            after = before.next.next
+            before.next = after
+            after.prev = before
+            self.length -= 1

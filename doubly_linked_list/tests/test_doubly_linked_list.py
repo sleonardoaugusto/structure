@@ -153,7 +153,7 @@ def test_insert_on_the_middle():
     assert dll.length == 3
 
 
-def test_insert_at_the_end():
+def test_insert_on_the_end():
     dll = DoublyLinkedList(1)
     dll.append(2)
     dll.insert(3, 2)
@@ -163,3 +163,29 @@ def test_insert_at_the_end():
     assert dll.tail.prev == dll.head.next
     assert dll.tail.value == 3
     assert dll.length == 3
+
+
+def test_remove_empty_list():
+    dll = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        dll.remove(0)
+
+
+def test_remove_on_the_beginning():
+    dll = DoublyLinkedList(1)
+    dll.remove(0)
+    assert dll.head is None
+    assert dll.tail is None
+    assert dll.length == 0
+
+
+def test_remove_on_the_middle():
+    dll = DoublyLinkedList(1)
+    dll.append(2)
+    dll.append(3)
+    dll.remove(1)
+    assert dll.head.value == 1
+    assert dll.head.next == dll.tail
+    assert dll.tail.value == 3
+    assert dll.tail.prev == dll.head
+    assert dll.length == 2
