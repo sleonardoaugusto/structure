@@ -77,3 +77,26 @@ def test_prepend_length_1():
     assert dll.tail.value == 1
     assert dll.tail.prev.value == 2
     assert dll.length == 2
+
+
+def test_pop_first_empty_list():
+    dll = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        dll.pop_first()
+
+
+def test_pop_first_length_1():
+    dll = DoublyLinkedList(1)
+    dll.pop_first()
+    assert dll.head is None
+    assert dll.tail is None
+    assert dll.length == 0
+
+
+def test_pop_first_length_2():
+    dll = DoublyLinkedList(1)
+    dll.append(2)
+    dll.pop_first()
+    assert dll.head.value == 2
+    assert dll.tail.value == 2
+    assert dll.length == 1
