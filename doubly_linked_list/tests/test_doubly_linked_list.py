@@ -100,3 +100,14 @@ def test_pop_first_length_2():
     assert dll.head.value == 2
     assert dll.tail.value == 2
     assert dll.length == 1
+
+
+def test_get_empty_list():
+    dll = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        dll.get(0)
+
+
+def test_get():
+    dll = DoublyLinkedList(1)
+    assert dll.get(0).value == 1

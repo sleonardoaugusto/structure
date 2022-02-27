@@ -60,3 +60,11 @@ class DoublyLinkedList:
             self.head = self.head.next
             self.head.prev = None
             self.length -= 1
+
+    def get(self, idx):
+        if self.length == 0:
+            raise IndexError
+        temp = self.head
+        for _ in range(idx):
+            temp = temp.next
+        return temp
