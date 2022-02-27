@@ -59,3 +59,21 @@ def test_pop_length_2():
     assert dll.head.next is None
     assert dll.tail.value == 1
     assert dll.length == 1
+
+
+def test_prepend_empty_list():
+    dll = DoublyLinkedList()
+    dll.prepend(1)
+    assert dll.head.value == 1
+    assert dll.tail.value == 1
+    assert dll.length == 1
+
+
+def test_prepend_length_1():
+    dll = DoublyLinkedList(1)
+    dll.prepend(2)
+    assert dll.head.value == 2
+    assert dll.head.next.value == 1
+    assert dll.tail.value == 1
+    assert dll.tail.prev.value == 2
+    assert dll.length == 2
