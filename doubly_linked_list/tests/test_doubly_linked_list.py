@@ -111,3 +111,15 @@ def test_get_empty_list():
 def test_get():
     dll = DoublyLinkedList(1)
     assert dll.get(0).value == 1
+
+
+def test_set_empty_list():
+    dll = DoublyLinkedList()
+    with pytest.raises(IndexError):
+        dll.set(1, 0)
+
+
+def test_set_length_1():
+    dll = DoublyLinkedList(1)
+    dll.set(2, 0)
+    assert dll.head.value == 2

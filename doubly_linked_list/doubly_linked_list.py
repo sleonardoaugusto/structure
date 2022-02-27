@@ -68,3 +68,7 @@ class DoublyLinkedList:
         for _ in range(idx):
             temp = temp.next
         return temp
+
+    def set(self, value, idx):
+        temp = self.get(idx)
+        temp.value = value
