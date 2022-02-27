@@ -123,3 +123,43 @@ def test_set_length_1():
     dll = DoublyLinkedList(1)
     dll.set(2, 0)
     assert dll.head.value == 2
+
+
+def test_insert_empty_list():
+    dll = DoublyLinkedList()
+    dll.insert(1, 0)
+    assert dll.head.value == 1
+    assert dll.tail.value == 1
+    assert dll.length == 1
+
+
+def test_insert_on_the_beginning():
+    dll = DoublyLinkedList(2)
+    dll.insert(1, 0)
+    assert dll.head.value == 1
+    assert dll.tail.value == 2
+    assert dll.length == 2
+
+
+def test_insert_on_the_middle():
+    dll = DoublyLinkedList(1)
+    dll.append(3)
+    dll.insert(2, 1)
+    assert dll.head.value == 1
+    assert dll.head.next.value == 2
+    assert dll.head.next.prev == dll.head
+    assert dll.tail.prev == dll.head.next
+    assert dll.tail.value == 3
+    assert dll.length == 3
+
+
+def test_insert_at_the_end():
+    dll = DoublyLinkedList(1)
+    dll.append(2)
+    dll.insert(3, 2)
+    assert dll.head.value == 1
+    assert dll.head.next.value == 2
+    assert dll.head.next.prev == dll.head
+    assert dll.tail.prev == dll.head.next
+    assert dll.tail.value == 3
+    assert dll.length == 3

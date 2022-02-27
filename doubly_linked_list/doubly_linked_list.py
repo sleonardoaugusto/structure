@@ -72,3 +72,20 @@ class DoublyLinkedList:
     def set(self, value, idx):
         temp = self.get(idx)
         temp.value = value
+
+    def insert(self, value, idx):
+        if idx == 0:
+            self.prepend(value)
+        elif idx == self.length:
+            self.append(value)
+        else:
+            before = self.head
+            for _ in range(idx - 1):
+                before = before.next
+            after = before.next
+            node = Node(value)
+            node.prev = before
+            node.next = after
+            before.next = node
+            after.prev = node
+            self.length += 1
