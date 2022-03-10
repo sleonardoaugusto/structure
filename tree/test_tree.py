@@ -30,3 +30,17 @@ def test_should_return_false_if_value_already_exists():
     t = BinarySearchTree()
     t.insert(1)
     assert t.insert(1) is False
+
+
+def test_contains_should_return_true():
+    t = BinarySearchTree()
+    t.insert(1)
+    t.insert(2)
+    assert t.contains(2) is True
+
+
+def test_contains_should_return_false():
+    t = BinarySearchTree()
+    t.insert(1)
+    t.insert(2)
+    assert t.contains(3) is False
