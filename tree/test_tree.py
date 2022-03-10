@@ -44,3 +44,16 @@ def test_contains_should_return_false():
     t.insert(1)
     t.insert(2)
     assert t.contains(3) is False
+
+
+def test_minimum_value_node():
+    t = BinarySearchTree()
+    t.insert(47)
+    t.insert(21)
+    t.insert(76)
+    t.insert(18)
+    t.insert(27)
+    t.insert(52)
+    t.insert(82)
+    assert t.minimum_value_node(t.root).value == 18
+    assert t.minimum_value_node(t.root.right).value == 52

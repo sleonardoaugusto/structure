@@ -42,3 +42,8 @@ class BinarySearchTree:
                 else:
                     return True
             return False
+
+    def minimum_value_node(self, node):
+        while node.left:
+            node = node.left
+        return node
